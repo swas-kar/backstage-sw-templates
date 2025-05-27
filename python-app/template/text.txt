@@ -1,0 +1,2 @@
+app's name is : ${{ values.app_name }}
+app's env is : ${{ values.app_env }}
