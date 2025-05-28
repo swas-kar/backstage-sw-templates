@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.app_name }}
   description: python app that displays time of name ${{ values.app_name }}
   annotations:
-    github.com/project-slug: swas-kar/${{ values.app_name }}
+    github.com/project-slug: swastika-kar-2003/${{ values.app_name }}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: service
