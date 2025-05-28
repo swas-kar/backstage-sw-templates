@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: ${{ values.app_name }}
-  description: python app that displays time deployed on ${{ values.app_env }}
+  description: python app that displays time of name ${{ values.app_name }}
   annotations:
     github.com/project-slug: swas-kar/${{ values.app_name }}
     backstage.io/techdocs-ref: dir:.
@@ -10,3 +10,4 @@ spec:
   type: service
   owner: development
   lifecycle: experimental
+
