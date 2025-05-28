@@ -5,7 +5,7 @@ on:
     paths:
       - 'src/**'
     branches:
-      - master
+      - main
 
 jobs:
   ci:
@@ -42,15 +42,15 @@ jobs:
         name: Modifies values file
         shell: bash
         run : |
-          echo  ${{ '${{needs.job1.outputs.commit_id}}' }}'
+          echo ${{ '${{needs.ci.outputs.commit_id}}' }}
           pip install yq
-          yq -Yi '.image.tag = "'${{needs.ci.outputs.commit_id}}'"' charts/${{ values.app_name }}/values-${{ values.app_env }}.yaml
+          yq -Yi '.image.tag = "${{'${{needs.ci.outputs.commit_id}}' }}"' charts/${{values.app_name}}/values-${{values.app_env}}.yaml
           
       - 
         name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: 'Updated values.yaml with ${{needs.ci.outputs.commit_id}}'
+          message: 'Updates values.yaml with commit ${{ '${{needs.ci.outputs.commit_id}}' }}'
       -
         name: Install ArgoCD CLI
         shell: bash
