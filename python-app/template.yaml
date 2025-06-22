@@ -36,6 +36,84 @@ spec:
           description: Set to true to enable the 'any' feature
           default: false
 
+    - title: Feature Options
+      properties:
+        enable_logging:
+          title: Enable Logging
+          type: boolean
+          description: Adds structured logging to your Flask app
+          default: true
+        enable_monitoring:
+          title: Enable Monitoring
+          type: boolean
+          description: Integrates basic health and metrics endpoints
+          default: true
+        include_dockerfile:
+          title: Include Dockerfile
+          type: boolean
+          description: Adds a Dockerfile for containerization
+          default: true
+        include_gitignore:
+          title: Include .gitignore
+          type: boolean
+          description: Adds a standard Python .gitignore file
+          default: true
+        use_postgresql:
+          title: Use PostgreSQL
+          type: boolean
+          description: Adds PostgreSQL client and connection config
+          default: false
+        use_sqlite:
+          title: Use SQLite
+          type: boolean
+          description: Adds SQLite for local development
+          default: true
+        enable_authentication:
+          title: Enable Authentication
+          type: boolean
+          description: Adds JWT-based auth middleware
+          default: false
+        enable_cors:
+          title: Enable CORS
+          type: boolean
+          description: Adds CORS headers for cross-origin requests
+          default: true
+        add_swagger:
+          title: Add Swagger UI
+          type: boolean
+          description: Auto-generates Swagger documentation
+          default: false
+        add_unit_tests:
+          title: Add Unit Tests
+          type: boolean
+          description: Adds a basic Pytest test suite
+          default: true
+        add_ci_pipeline:
+          title: Add CI Pipeline
+          type: boolean
+          description: Adds GitHub Actions for lint/test
+          default: true
+        enable_rate_limiting:
+          title: Enable Rate Limiting
+          type: boolean
+          description: Adds Flask-Limiter to prevent abuse
+          default: false
+        enable_request_id:
+          title: Add Request ID Middleware
+          type: boolean
+          description: Generates unique IDs for tracking each request
+          default: true
+        include_env_file:
+          title: Include .env Template
+          type: boolean
+          description: Adds a `.env` example file
+          default: true
+        enable_https_redirect:
+          title: Force HTTPS Redirect
+          type: boolean
+          description: Redirect all HTTP traffic to HTTPS
+          default: false
+
   steps:
     - id: fetch-base
       name: Fetch Base
@@ -43,9 +121,25 @@ spec:
       input:
         url: ./template
         values:
-          app_name: ${{parameters.component_id}}
-          app_env: ${{parameters.environment}}
-          use_any: ${{parameters.any}}
+          app_name: ${{ parameters.component_id }}
+          app_env: ${{ parameters.environment }}
+          use_any: ${{ parameters.any }}
+          features:
+            logging: ${{ parameters.enable_logging }}
+            monitoring: ${{ parameters.enable_monitoring }}
+            dockerfile: ${{ parameters.include_dockerfile }}
+            gitignore: ${{ parameters.include_gitignore }}
+            postgresql: ${{ parameters.use_postgresql }}
+            sqlite: ${{ parameters.use_sqlite }}
+            auth: ${{ parameters.enable_authentication }}
+            cors: ${{ parameters.enable_cors }}
+            swagger: ${{ parameters.add_swagger }}
+            tests: ${{ parameters.add_unit_tests }}
+            ci: ${{ parameters.add_ci_pipeline }}
+            rate_limit: ${{ parameters.enable_rate_limiting }}
+            request_id: ${{ parameters.enable_request_id }}
+            env_file: ${{ parameters.include_env_file }}
+            https_redirect: ${{ parameters.enable_https_redirect }}
 
     - id: publish
       name: Publish
