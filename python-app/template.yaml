@@ -36,57 +36,55 @@ spec:
           description: Set to true to enable the 'any' feature
           default: false
 
-    - title: Feature Options
-      properties:
-        features:
-          type: object
-          properties:
-            enable_logging:
-              title: Enable Logging
-              type: boolean
-            enable_monitoring:
-              title: Enable Monitoring
-              type: boolean
-            include_dockerfile:
-              title: Include Dockerfile
-              type: boolean
-            include_gitignore:
-              title: Include .gitignore
-              type: boolean
-            enable_cors:
-              title: Enable CORS
-              type: boolean
-            use_postgresql:
-              title: Use PostgreSQL
-              type: boolean
-            use_sqlite:
-              title: Use SQLite
-              type: boolean
-            enable_authentication:
-              title: Enable Authentication
-              type: boolean
-            enable_rate_limiting:
-              title: Enable Rate Limiting
-              type: boolean
-            enable_request_id:
-              title: Add Request ID Middleware
-              type: boolean
-            add_swagger:
-              title: Add Swagger UI
-              type: boolean
-            add_unit_tests:
-              title: Add Unit Tests
-              type: boolean
-            add_ci_pipeline:
-              title: Add CI Pipeline
-              type: boolean
-            include_env_file:
-              title: Include .env Template
-              type: boolean
-            enable_https_redirect:
-              title: Force HTTPS Redirect
-              type: boolean
-          ui:field: MyCustomCheckboxGrid
+- title: Feature Options
+  ui:ObjectFieldTemplate: ThreeColumn
+  properties:
+    enable_logging:
+      title: Enable Logging
+      type: boolean
+    enable_monitoring:
+      title: Enable Monitoring
+      type: boolean
+    include_dockerfile:
+      title: Include Dockerfile
+      type: boolean
+    include_gitignore:
+      title: Include .gitignore
+      type: boolean
+    enable_cors:
+      title: Enable CORS
+      type: boolean
+    use_postgresql:
+      title: Use PostgreSQL
+      type: boolean
+    use_sqlite:
+      title: Use SQLite
+      type: boolean
+    enable_authentication:
+      title: Enable Authentication
+      type: boolean
+    enable_rate_limiting:
+      title: Enable Rate Limiting
+      type: boolean
+    enable_request_id:
+      title: Add Request ID Middleware
+      type: boolean
+    add_swagger:
+      title: Add Swagger UI
+      type: boolean
+    add_unit_tests:
+      title: Add Unit Tests
+      type: boolean
+    add_ci_pipeline:
+      title: Add CI Pipeline
+      type: boolean
+    include_env_file:
+      title: Include .env Template
+      type: boolean
+    enable_https_redirect:
+      title: Force HTTPS Redirect
+      type: boolean
+
 
   steps:
     - id: fetch-base
