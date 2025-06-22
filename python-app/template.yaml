@@ -36,7 +36,7 @@ spec:
           description: Set to true to enable the 'any' feature
           default: false
 
-    - title: Feature Options
+    - title: Logging & Monitoring
       properties:
         enable_logging:
           title: Enable Logging
@@ -54,6 +54,13 @@ spec:
           title: Include .gitignore
           type: boolean
           description: Adds a standard Python .gitignore file
+        enable_cors:
+          title: Enable CORS
+          type: boolean
+          description: Adds CORS headers for cross-origin requests
+
+    - title: Database & Auth
+      properties:
         use_postgresql:
           title: Use PostgreSQL
           type: boolean
@@ -66,10 +73,17 @@ spec:
           title: Enable Authentication
           type: boolean
           description: Adds JWT-based auth middleware
-        enable_cors:
-          title: Enable CORS
+        enable_rate_limiting:
+          title: Enable Rate Limiting
           type: boolean
-          description: Adds CORS headers for cross-origin requests
+          description: Adds Flask-Limiter to prevent abuse
+        enable_request_id:
+          title: Add Request ID Middleware
+          type: boolean
+          description: Generates unique IDs for tracking each request
+
+    - title: CI/CD & API
+      properties:
         add_swagger:
           title: Add Swagger UI
           type: boolean
@@ -82,14 +96,6 @@ spec:
           title: Add CI Pipeline
           type: boolean
           description: Adds GitHub Actions for lint/test
-        enable_rate_limiting:
-          title: Enable Rate Limiting
-          type: boolean
-          description: Adds Flask-Limiter to prevent abuse
-        enable_request_id:
-          title: Add Request ID Middleware
-          type: boolean
-          description: Generates unique IDs for tracking each request
         include_env_file:
           title: Include .env Template
           type: boolean
@@ -98,13 +104,6 @@ spec:
           title: Force HTTPS Redirect
           type: boolean
           description: Redirect all HTTP traffic to HTTPS
-      ui:
-        layout:
-          - [enable_logging, enable_monitoring, include_dockerfile]
-          - [include_gitignore, use_postgresql, use_sqlite]
-          - [enable_authentication, enable_cors, add_swagger]
-          - [add_unit_tests, add_ci_pipeline, enable_rate_limiting]
-          - [enable_request_id, include_env_file, enable_https_redirect]
 
   steps:
     - id: fetch-base
