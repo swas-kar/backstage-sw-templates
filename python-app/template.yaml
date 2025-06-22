@@ -26,6 +26,11 @@ spec:
           enum:
             - dev
             - prod
+        any:
+          title: Any Option
+          type: boolean
+          description: Set to true to enable the 'any' feature
+          default: false
 
   steps:
     - id: fetch-base
@@ -36,6 +41,7 @@ spec:
         values:
           app_name: ${{parameters.component_id}}
           app_env: ${{parameters.environment}}
+          use_any: ${{parameters.any}}
 
     - id: publish
       name: Publish
