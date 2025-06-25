@@ -58,7 +58,7 @@ spec:
         values:
           app_name: ${{ parameters.component_id }}
           app_env: ${{ parameters.environment }}
-          package_name: ${{ parameters.package_name }}
+          package_path: ${{ parameters.package_name | replace('.', '/') }}
           use_any: ${{ parameters.any }}
           features:
             logging: ${{ parameters.features.enable_logging }}
