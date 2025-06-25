@@ -13,11 +13,17 @@ spec:
     - title: Basic Information
       required:
         - component_id
+        - package_name
       properties:
         component_id:
           title: Component name
           type: string
           description: Provide a component (microservice) name
+          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
+        package_name:
+          title: Package name
+          type: string
+          description: Provide a package name
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
 
     - title: Deployment Settings
@@ -42,48 +48,6 @@ spec:
         enable_logging:
           title: Enable Logging
           type: boolean
-        enable_monitoring:
-          title: Enable Monitoring
-          type: boolean
-        include_dockerfile:
-          title: Include Dockerfile
-          type: boolean
-        include_gitignore:
-          title: Include .gitignore
-          type: boolean
-        enable_cors:
-          title: Enable CORS
-          type: boolean
-        use_postgresql:
-          title: Use PostgreSQL
-          type: boolean
-        use_sqlite:
-          title: Use SQLite
-          type: boolean
-        enable_authentication:
-          title: Enable Authentication
-          type: boolean
-        enable_rate_limiting:
-          title: Enable Rate Limiting
-          type: boolean
-        enable_request_id:
-          title: Add Request ID Middleware
-          type: boolean
-        add_swagger:
-          title: Add Swagger UI
-          type: boolean
-        add_unit_tests:
-          title: Add Unit Tests
-          type: boolean
-        add_ci_pipeline:
-          title: Add CI Pipeline
-          type: boolean
-        include_env_file:
-          title: Include .env Template
-          type: boolean
-        enable_https_redirect:
-          title: Force HTTPS Redirect
-          type: boolean
 
   steps:
     - id: fetch-base
@@ -94,23 +58,10 @@ spec:
         values:
           app_name: ${{ parameters.component_id }}
           app_env: ${{ parameters.environment }}
+          package_name: ${{ parameters.package_name }}
           use_any: ${{ parameters.any }}
           features:
             logging: ${{ parameters.features.enable_logging }}
-            monitoring: ${{ parameters.features.enable_monitoring }}
-            dockerfile: ${{ parameters.features.include_dockerfile }}
-            gitignore: ${{ parameters.features.include_gitignore }}
-            postgresql: ${{ parameters.features.use_postgresql }}
-            sqlite: ${{ parameters.features.use_sqlite }}
-            auth: ${{ parameters.features.enable_authentication }}
-            cors: ${{ parameters.features.enable_cors }}
-            swagger: ${{ parameters.features.add_swagger }}
-            tests: ${{ parameters.features.add_unit_tests }}
-            ci: ${{ parameters.features.add_ci_pipeline }}
-            rate_limit: ${{ parameters.features.enable_rate_limiting }}
-            request_id: ${{ parameters.features.enable_request_id }}
-            env_file: ${{ parameters.features.include_env_file }}
-            https_redirect: ${{ parameters.features.enable_https_redirect }}
 
     - id: publish
       name: Publish
