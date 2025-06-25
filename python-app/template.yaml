@@ -24,7 +24,7 @@ spec:
           title: Package name
           type: string
           description: Provide a package name
-          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
+          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(\.[a-zA-Z][a-zA-Z0-9]*)*$'
 
     - title: Deployment Settings
       required:
