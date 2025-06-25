@@ -5,15 +5,4 @@ ${{ parameters.component_id }}
 
 '{{ parameters.component_id }}'
 
-'{{#if parameters.component_id}}'
-  component_id: '{{ parameters.component_id }}'
-'{{/if}}'
-
-
-'{{#if parameters.environment }}'
-  environment: '{{ $parameters.environment }}'
-'{{/if}}'
-
-'{{#if parameters.environment == "dev" }}'
-  environment: dev
-'{{/if}}'
+{{ parameters.component_id }}
